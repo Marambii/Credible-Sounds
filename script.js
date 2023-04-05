@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="price-container">
                                     <h3 class="instrument-price">ksh.${response[i].Price}.00</h3>
                                     <a href="#!" data-instrumentId="${response[i].id}" class="add-to-cart"><i class="fa-solid fa-cart-shopping fa-beat"></i></a>
-                                    <button onClick='buyNowButton' id="buy-now" class="buy-now" role="button">Buy Now</button>
+                                    <button onclick='buyNowButton' id="buy-now" class="buy-now" role="button">Buy Now</button>
                                 </div>
                             </div>    
                         </div>`;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("buy-now", ()=> {
         addEventListener("click", () => {
-            alert('you have successfuly bought')
+            alert('you have successfully purchased this instrument')
         });
     });
 
