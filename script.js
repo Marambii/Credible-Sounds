@@ -40,8 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
           function displayCart() {
             if (cart.length === 0) {
               document.getElementById('cartItem').innerHTML = 'Your cart is empty';
+              document.getElementById('total').innerHTML = `Total Price: ksh.0.00`;
             } else {
               let cartHtml = '';
+              let totalPrice = 0;
               for (let i = 0; i < cart.length; i++) {
                 const instrument = cart[i];
                 cartHtml += `
@@ -49,11 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="cart-item-description">${instrument.description}</div>
                     <p>${instrument.type}</p>
                     <h3>${instrument.Price}.00</h3>
-                    <i class="fa-sharp fa-solid fa-trash" onClick="removeItemFromCart(${i})"></i>
+                    <i class="fa-sharp fa-solid fa-trash" onclick="removeItemFromCart(${i})"></i>
                   </div>
                 `;
+                totalPrice += instrument.Price;
               }
               document.getElementById('cartItem').innerHTML = cartHtml;
+              document.getElementById('total').innerHTML = `Total Price: ksh.${totalPrice}.00`;
             }
           }
   

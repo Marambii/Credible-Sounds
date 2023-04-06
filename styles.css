@@ -150,7 +150,7 @@
         align-items: center;
         justify-content: center;
         font-size: 20px;
-        color: rgb(230, 184, 129);
+        color: rgb(55, 193, 211);
         cursor:pointer;
         margin-right: 20px;
         margin-bottom: 35px;
@@ -345,7 +345,7 @@
 .Sidebar{
     width: 100%;
     border-radius: 5px;
-    background-color: #2b819b;
+    background-color: hsl(194, 47%, 49%);
     margin-left: 50px;
     padding: 15px;
     text-align: center;
@@ -370,3 +370,34 @@
     border-top:  solid #000;
 
 }
+
+
+  /* Contact section */
+  #contact {
+    background-color: hsl(194, 47%, 49%);
+    color: #fff;
+    padding: 80px 0;
+  }
+
+  #contact h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .contact-details p {
+    margin: 20px;
+  }
+
+  .contact-details i {
+    margin-right: 10px;
+    font-size: 2rem;
+  }
+
