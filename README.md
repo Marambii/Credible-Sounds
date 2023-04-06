@@ -2,7 +2,7 @@
  
  ## Author Baruch Marambii
 
- Here is a link to the [frotend]()
+ Here is a link to the [frotend](https://marambii.github.io/Credible-Sounds/)
  Here is a link to the [backend](https://crediblesounds.onrender.com/instruments)
 
 ## Project statement
@@ -11,6 +11,14 @@ As a passionate guitarist and music lover, I have not found the right online sho
 
 ## solution
  I am making A web application that uses HTML, CSS and Javascript to Browse instruments, their price, specifications{details} and etc. I am using a local JSON file as my API. One can also buy those instruments .
+
+## How does it work
+1.One can check availabe instruments .
+2.you could add them to a cart and delete items from the cart if you change your mind.
+3.The buy now button works to alert the user that they have purchased and can call the supplier for delivery
+
+
+
 
 ## Canvas
 
@@ -109,3 +117,12 @@ GET /toys/:id
 PATCH /toys/:id
 DELETE /toys/:id
 You can consult the json-server docsLinks to an external site. for more information.
+
+
+## LICENSE
+
+this file is under the MIT licence
+
+MIT License
+
+Copyright (c) 2023 Marambii
