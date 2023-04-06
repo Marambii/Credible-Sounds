@@ -1,39 +1,85 @@
 document.addEventListener('DOMContentLoaded', () => {
     let instruments = document.querySelector('.instrument');
-    let cartTotal = 0
+  
     function fetchInstruments(url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(response => {
-                for (let i = 0; i < response.length; i++) {
-                    instruments.innerHTML += `
-                        <div class="instrument">
-                            <img src="${response[i].img}" alt ="" class="product-img">
-                            <div class="product-content">
-                                <h4 class="product-type">${response[i].type}</h4>
-                                <h3 class="description">${response[i].description}</h3>
-                                <div class="price-container">
-                                    <h3 class="instrument-price">ksh.${response[i].Price}.00</h3>
-                                    <a href="#!" data-instrumentId="${response[i].id}" class="add-to-cart"><i class="fa-solid fa-cart-shopping fa-beat"></i></a>
-                                    <button onclick='buyNowButton' id="buy-now" class="buy-now" role="button">Buy Now</button>
-                                </div>
-                            </div>    
-                        </div>`;
-                }
-
-                
-            })
-            .catch(error => console.log(error));
-               
+      fetch(url)
+        .then(response => response.json())
+        .then(response => {
+          for (let i = 0; i < response.length; i++) {
+            let instrument = response[i];
+            let instrumentElement = document.createElement('div');
+            instrumentElement.classList.add('instrument');
+  
+            instrumentElement.innerHTML = `
+              <img src="${instrument.img}" alt="" class="product-img">
+              <div class="product-content">
+                <h4 class="product-type">${instrument.type}</h4>
+                <h3 class="description">${instrument.description}</h3>
+                <div class="price-container">
+                  <h3 class="instrument-price">ksh.${instrument.Price}.00</h3>
+                  <button id="addToCart" data-instrument-id="${instrument.id}" class="add-to-cart"><i class="fa-solid fa-cart-shopping fa-beat"></i></button>
+                  <button id="buyNow" class="buy-now" role="button">Buy Now</button>
+                </div>
+              </div>`;
+  
+            instruments.appendChild(instrumentElement);
+          }
+  
+          const cart = [];
+  
+          function addToCart(instrument) {
+            cart.push(instrument);
+            displayCart();
+          }
+  
+          function removeItemFromCart(index) {
+            cart.splice(index, 1);
+            displayCart();
+          }
+  
+          function displayCart() {
+            if (cart.length === 0) {
+              document.getElementById('cartItem').innerHTML = 'Your cart is empty';
+            } else {
+              let cartHtml = '';
+              for (let i = 0; i < cart.length; i++) {
+                const instrument = cart[i];
+                cartHtml += `
+                  <div class="cart-item">
+                    <div class="cart-item-description">${instrument.description}</div>
+                    <p>${instrument.type}</p>
+                    <h3>${instrument.Price}.00</h3>
+                    <i class="fa-sharp fa-solid fa-trash" onClick="removeItemFromCart(${i})"></i>
+                  </div>
+                `;
+              }
+              document.getElementById('cartItem').innerHTML = cartHtml;
+            }
+          }
+  
+          const addToCartButtons = document.querySelectorAll('.add-to-cart');
+          addToCartButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+              const instrumentId = button.dataset.instrumentId;
+              fetch(`https://crediblesounds.onrender.com/instruments/${instrumentId}`)
+                .then(response => response.json())
+                .then(response => {
+                  addToCart(response);
+                })
+                .catch(error => console.log(error));
+            });
+          });
+  
+          const buyNowButtons = document.querySelectorAll('.buy-now');
+          buyNowButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+              alert('You have successfully purchased this instrument');
+            });
+          });
+        })
+        .catch(error => console.log(error));
     }
-
-    document.getElementById("buy-now", ()=> {
-        addEventListener("click", () => {
-            alert('you have successfully purchased this instrument')
-        });
-    });
-
+  
     fetchInstruments('https://crediblesounds.onrender.com/instruments');
-
-    
-});
+  });
+  
