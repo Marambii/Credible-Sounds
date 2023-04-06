@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const buyNowButtons = document.querySelectorAll('.buy-now');
           buyNowButtons.forEach((button) => {
             button.addEventListener('click', () => {
-              alert('You have successfully purchased this instrument');
+              alert('Call us now to get this instrument Delivered. Thanks for choosing Credible sounds');
             });
           });
         })
